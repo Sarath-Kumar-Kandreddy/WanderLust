@@ -1,0 +1,120 @@
+<%layout('layouts/boilerplate')%>
+<style>
+  .filter{
+    margin-right:2rem;
+    margin-top:2rem;
+    text-align:center;
+    opacity:0.7;
+  }
+  .filter:hover{
+    opacity:1;
+    cursor: pointer;
+  }
+  #filters{
+    display:flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .tax-toggle{
+    height:3rem;
+    border: 2px solid black;
+    border-radius:2rem;
+    padding:1rem;
+    margin-left:5rem;
+    display: flex;
+    align-items: center;
+    
+  }
+  .icon{
+    background:none;
+    border:none;
+    
+   /* color:#fe424d;*/
+  }
+  
+
+</style>
+<body>
+  <form action="/listings/search" method="GET">
+  <div id="filters" class="container-lg">
+    <div class="filter">
+        <button class="icon" type="submit" name="search" value="historic"> <i class="fa-solid fa-fire"></i></button>
+        <p>Trending</p>
+    </div>
+    <div class="filter">
+     <button class="icon" type="submit" name="search" value="Hotel"><i class="fa-solid fa-bed"></i></button>
+        <p>Hotels</p>
+    </div>
+    <div class="filter">
+     <button class="icon" type="submit" name="search" value="Iconic citie"><i class="fa-solid fa-mountain-city"></i></button> 
+        <p>Iconic cities</p>
+    </div>
+    <div class="filter">
+       <button class="icon" type="submit" name="search" value="Mount"><i class="fa-solid fa-mountain"></i></button>
+        <p>Mountains</p>
+    </div>
+    <div class="filter">
+       <button class="icon" type="submit" name="search" value="Castle"><i class="fa-brands fa-fort-awesome"></i></button>
+        <p>Castles</p>
+    </div>
+    <div class="filter">
+       <button class="icon" type="submit" name="search" value="fall"><i class="fa-solid fa-water"></i></button>
+        <p>waterfalls</p>
+    </div>
+    <div class="filter">
+       <button class="icon" type="submit" name="search" value="Arctic"><i class="fa-solid fa-snowflake"></i></button>
+        <p>Arctic</p>
+    </div>
+    <div class="filter">
+        <button class="icon" type="submit" name="search" value="Camping"><i class="fa-solid fa-campground"></i></button> 
+        <p>Campings</p>
+    </div>
+     <div class="filter">
+        <button class="icon" type="submit" name="search" value="Farm"><i class="fa-solid fa-tractor"></i></button>
+        <p>Farms</p>
+    </div>
+     <div class="filter">
+        <button class="icon" type="submit" name="search" value="Beach"><i class="fa-solid fa-umbrella-beach"></i></button>
+        <p>Beaches</p>
+    </div>
+    </form>
+    <div class="tax-toggle">
+      <div class="form-check-reverse form-switch actual">
+        <input class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault">
+        <label class="form-check-label" for="switchCheckDefault">amount with taxes</label>
+      </div>
+    </div>
+
+
+   
+  </div>
+  
+<div class="row row-cols-1  row-cols-md-2 row-cols-lg-3 g-4 listing-container mt-3">
+   <% for(let list of listings){%>
+<div class="card col" style="width:25rem">
+  <img src="<%=list.image.url%>" class="card-img-top" alt="no image available" style="height:20rem">
+  <!--<div class="card-img-overlay"></div> -->
+  <div class="card-body">
+    <h5 class="card-title"><%=list.title%></h5>
+    <p class="card-text"><%=list.description%></p>
+    <p class="card-text">&#8377;<%=list.price.toLocaleString("en-IN")%>/night</p>
+    <a href="/listings/<%=list._id%>" class="btn btn-primary">LOOK AT THIS</a>
+  </div>
+</div>
+
+   
+   <!--  <li><a href="/listings/<%=list._id%>"><%=list.title%></a></li> -->
+   
+   <%}%> 
+   <!--<form action="/listings/new" method="GET">
+        <button>Add New places</button>
+    </form> -->
+    <script>
+      let taxSwitch=document.getElementById("switchCheckDefault");
+      taxSwitch.addEventListener("click",()=>{
+        console.log("clicked");
+      });
+
+    </script>
+</body>
+
