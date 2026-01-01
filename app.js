@@ -74,7 +74,7 @@ main().then(()=>{
     console.log(err);
 });
 async function main(){
-    await mongoose.connect(dbUrl);
+    await mongoose.connect(url);
 }
 const validateListing=(req,res,next)=>{
    

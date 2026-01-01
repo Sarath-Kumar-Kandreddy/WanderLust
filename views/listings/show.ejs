@@ -95,7 +95,7 @@
         <%}else{%>
             <div class="row">
             <%for(rev of listing.reviews){%>
-                <div class="card mb-3 col-5 ms-3 m-2">
+                <div class="col-12 col-md-6 col-lg-4 mb-3">
                     <div class="card-body revbody">
                         <h5 class="card-title">@<%=rev.author.username%></h5>
                         <p class="starability-result card-text" data-rating=<%=rev.rating%>></p><br>
