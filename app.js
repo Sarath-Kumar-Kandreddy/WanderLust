@@ -49,7 +49,7 @@ store.on("error",(e)=>{
     console.log("session store error",e);
 });
 const sessionOptions={
-    //store,
+    store,
     secret:process.env.secret,
     resave:false,
     saveUninitialized:true,
