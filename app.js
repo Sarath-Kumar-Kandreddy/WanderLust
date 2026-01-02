@@ -36,7 +36,7 @@ const session=require("express-session");
 const MongoStore = require("connect-mongo").default;
 const flash=require('connect-flash');
 
-const dbUrl=process.env.atlas_url ;
+const dbUrl=process.env.atlas_url;
 const store= MongoStore.create({
     mongoUrl: dbUrl,
     crypto: {
@@ -49,7 +49,7 @@ store.on("error",(e)=>{
     console.log("session store error",e);
 });
 const sessionOptions={
-    store,
+    //store,
     secret:process.env.secret,
     resave:false,
     saveUninitialized:true,
@@ -118,7 +118,9 @@ passport.deserializeUser(User.deserializeUser());
 app.use((req,res,next)=>{
     res.locals.success=req.flash("success");
     res.locals.error=req.flash("error");
-    res.locals.currUser=req.user;
+    res.locals.currUser=req.user||null;
+  //  console.log("Middleware running! User:", req.user);
+    
     next();
 });
 app.use('/listings',listings);
